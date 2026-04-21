@@ -1,0 +1,60 @@
+controller_names:
+     - head_controller
+     - torso_controller
+     - left_arm_controller
+     - left_hand_controller
+     - right_arm_controller
+     - right_hand_controller
+
+head_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - HeadYaw
+          - HeadPitch
+
+torso_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - HipRoll
+          - HipPitch
+          - KneePitch
+
+left_arm_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - LShoulderPitch
+          - LShoulderRoll
+          - LElbowYaw
+          - LElbowRoll
+          - LWristYaw
+
+left_hand_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - LHand
+
+right_arm_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - RShoulderPitch
+          - RShoulderRoll
+          - RElbowYaw
+          - RElbowRoll
+          - RWristYaw
+
+right_hand_controller:
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+          - RHand
