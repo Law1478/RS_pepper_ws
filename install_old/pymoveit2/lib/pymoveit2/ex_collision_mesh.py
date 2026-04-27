@@ -1,0 +1,1 @@
+/home/hayden/ros_ws/src/pymoveit2/examples/ex_collision_mesh.py

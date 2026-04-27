@@ -1,0 +1,17 @@
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/launch/fake.launch.py
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/launch/gz.launch.py
+/home/hayden/ros_ws/install/pepper_robot/share/ament_index/resource_index/package_run_dependencies/pepper_robot
+/home/hayden/ros_ws/install/pepper_robot/share/ament_index/resource_index/parent_prefix_path/pepper_robot
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/environment/ament_prefix_path.sh
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/environment/ament_prefix_path.dsv
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/environment/path.sh
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/environment/path.dsv
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/local_setup.bash
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/local_setup.sh
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/local_setup.zsh
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/local_setup.dsv
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/package.dsv
+/home/hayden/ros_ws/install/pepper_robot/share/ament_index/resource_index/packages/pepper_robot
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/cmake/pepper_robotConfig.cmake
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/cmake/pepper_robotConfig-version.cmake
+/home/hayden/ros_ws/install/pepper_robot/share/pepper_robot/package.xml

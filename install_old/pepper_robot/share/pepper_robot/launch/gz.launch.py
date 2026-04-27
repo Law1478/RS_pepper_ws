@@ -1,0 +1,1 @@
+/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot/launch/gz.launch.py

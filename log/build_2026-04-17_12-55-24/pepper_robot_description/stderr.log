@@ -1,0 +1,9 @@
+[0mCMake Error: failed to create symbolic link '/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description/meshes': File exists[0m
+[31mCMake Error at cmake_install.cmake:65 (file):
+  file INSTALL cannot duplicate symlink
+  "/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_description/meshes"
+  at
+  "/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description/meshes":
+  File exists.
+
+[0m

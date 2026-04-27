@@ -1,0 +1,1 @@
+Invoking command in '/home/hayden/ros_ws/build/pymoveit2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/hayden/ros_ws/src/pymoveit2 -DCMAKE_INSTALL_PREFIX=/home/hayden/ros_ws/install/pymoveit2

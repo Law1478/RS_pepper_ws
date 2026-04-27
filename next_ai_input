@@ -1,0 +1,19 @@
+okay, so basically, there is some weird name stuff going on. 
+
+Hard to remember all the details.
+
+basically, the "model" is correct, meaning that all the XML code is capable of running, but something in it is not running the actual controller code.
+
+First place to look would probably be in "pepper_robot.ros2_control". There seems to be something fucky in the "ros2_control" bracket
+"         <xacro:if value="${plugin == 'ign'}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin> "
+
+" gz_ros2_control/GazeboSimSystem " doesn't seem to be a variable, and also doesn't perfectly line up with other stuff which includes "GazeboSim" in  other files. What exactly do these if statements do?? the .urdf.xacro and .gazebo files don't refer to it?
+
+" <ros2_control name="${prefix}${name}" type="system"> " this line of code says that the ros2_control bracket basically has the " name="ros2_control_system" ", which neither the .urdf.xacro and .gazebo files refer to either
+
+
+maybe i should check which files are including this .ros2_control file. 
+
+
+AT THE END OF THE DAYYYYYYY i think i just need to look at the files with my eyes for a longer period of time.
