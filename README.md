@@ -30,5 +30,5 @@ Ensuring pepper is ready to go:
 ALSO:
 
 try to run this on pepper's tablet: pepper_ign_moveit2/pepper_robot_description/tablet_assets
-1. first all, host the https server using " python3 -m http.server 8080 "
-2. then, ssh into pepper and run              ros2 service call /tablet/load_url naoqi_bridge_msgs/srv/SetString "{data: 'http://[YOUR IP ADDRESS]/pepper_ign_moveit2/pepper_robot_description/tablet_assets/test_write.html'}" 
+1. first all, host the https server using: python3 -m http.server 8080 
+2. then, ssh into pepper and run:              ros2 service call /tablet/load_url naoqi_bridge_msgs/srv/SetString "{data: 'http://[YOUR IP ADDRESS]/pepper_ign_moveit2/pepper_robot_description/tablet_assets/test_write.html'}" 
