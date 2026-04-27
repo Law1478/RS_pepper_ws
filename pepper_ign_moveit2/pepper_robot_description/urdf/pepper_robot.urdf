@@ -5,6 +5,8 @@
 <!-- =================================================================================== -->
 <!-- URDF for Pepper -->
 <robot name="pepper_robot">
+  <!-- just to allow the if statement down there to trigger " ros2_control_pepper_robot ", 
+  because " ros2_control " is set to true -->
   <!--       -->
   <!-- Robot -->
   <!--       -->
@@ -312,12 +314,12 @@
     <child link="l_gripper"/>
     <origin rpy="0 0 0" xyz="0.025 0 0"/>
     <axis xyz="1.0 0 0"/>
-    <limit effort="0.144" lower="0.02" upper="0.98" velocity="12.56"/>
+    <limit effort="5.428" lower="0.02" upper="0.98" velocity="12.56"/>
   </joint>
   <link name="l_gripper">
     <inertial>
-      <mass value="1e-5"/>
-      <inertia ixx="1e-35" ixy="0.0" ixz="0.0" iyy="1e-35" iyz="0.0" izz="1e-35"/>
+      <mass value="0.05"/> 
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
   </link>
   <joint name="RShoulderPitch" type="revolute">
@@ -459,8 +461,8 @@
   </joint>
   <link name="r_gripper">
     <inertial>
-      <mass value="1e-5"/>
-      <inertia ixx="1e-35" ixy="0.0" ixz="0.0" iyy="1e-35" iyz="0.0" izz="1e-35"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
   </link>
   <link name="SonarBack_frame"/>
@@ -686,8 +688,8 @@
   </joint>
   <link name="RFinger41_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -711,8 +713,8 @@
   </joint>
   <link name="LFinger42_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -736,8 +738,8 @@
   </joint>
   <link name="RFinger12_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -761,8 +763,8 @@
   </joint>
   <link name="LFinger33_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -786,8 +788,8 @@
   </joint>
   <link name="RFinger31_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -811,8 +813,8 @@
   </joint>
   <link name="LFinger21_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -836,8 +838,8 @@
   </joint>
   <link name="RFinger32_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -861,8 +863,8 @@
   </joint>
   <link name="LFinger13_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -886,8 +888,8 @@
   </joint>
   <link name="LFinger32_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -911,8 +913,8 @@
   </joint>
   <link name="LFinger11_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -936,8 +938,8 @@
   </joint>
   <link name="RFinger22_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -961,8 +963,8 @@
   </joint>
   <link name="RFinger13_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -986,8 +988,8 @@
   </joint>
   <link name="LFinger22_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1011,8 +1013,8 @@
   </joint>
   <link name="RFinger21_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1036,8 +1038,8 @@
   </joint>
   <link name="LFinger41_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1061,8 +1063,8 @@
   </joint>
   <link name="LFinger12_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1086,8 +1088,8 @@
   </joint>
   <link name="RFinger23_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1111,8 +1113,8 @@
   </joint>
   <link name="RFinger11_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1136,8 +1138,8 @@
   </joint>
   <link name="LFinger23_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1161,8 +1163,8 @@
   </joint>
   <link name="LFinger43_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1186,8 +1188,8 @@
   </joint>
   <link name="RFinger43_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1211,8 +1213,8 @@
   </joint>
   <link name="RFinger42_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1236,8 +1238,8 @@
   </joint>
   <link name="LFinger31_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1261,8 +1263,8 @@
   </joint>
   <link name="RFinger33_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1286,8 +1288,8 @@
   </joint>
   <link name="LThumb1_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1311,8 +1313,8 @@
   </joint>
   <link name="RThumb2_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1336,8 +1338,8 @@
   </joint>
   <link name="RThumb1_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1361,8 +1363,8 @@
   </joint>
   <link name="LThumb2_link">
     <inertial>
-      <mass value="5e-3"/>
-      <inertia ixx="1e-4" ixy="0.0" ixz="0.0" iyy="1e-4" iyz="0.0" izz="1e-4"/>
+      <mass value="0.05"/>
+      <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
     </inertial>
     <visual>
       <geometry>
@@ -1462,45 +1464,10 @@
     <axis xyz="1.0 0 0"/>
     <limit effort="3.25" lower="0" upper="0" velocity="6.28319"/>
   </joint>
+  <!-- ROS 2 control -->
   <ros2_control name="ros2_control_system" type="system">
-    <!-- 
-      <hardware>
-        <xacro:if value="${plugin == 'fake'}">
-          <plugin>fake_components/GenericSystem</plugin>
-        </xacro:if>
-        <xacro:if value="${plugin == 'ign'}">
-          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
-        </xacro:if>
-        <xacro:if value="${plugin == 'real'}">
-          <xacro:ERROR_ros2_control_for_real_robot_unimplemented />
-        </xacro:if>
-        <xacro:unless value="${plugin == 'fake' or plugin == 'ign' or plugin == 'real'}">
-          <plugin>${plugin}</plugin>
-        </xacro:unless>
-      </hardware>
- -->
-    <!-- THIS IS WHEEL STUFF, IF YOU'RE PLANNING ON USING THE WHEELS, UNCOMMENT THIS
-
-      <joint name="WheelFL">
-        <param name="initial_position">0</param>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-      <joint name="WheelB">
-        <param name="initial_position">0</param>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-      <joint name="WheelFR">
-        <param name="initial_position">0</param>
-        <state_interface name="position"/>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint> -->
     <hardware>
-      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
     <joint name="LShoulderPitch">
       <param name="initial_position">1.77</param>
@@ -1818,11 +1785,6 @@
       <state_interface name="effort"/>
     </joint>
   </ros2_control>
-  <gazebo>
-    <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-      <parameters>/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_moveit_config/config/controllers_position.yaml</parameters>
-    </plugin>
-  </gazebo>
   <gazebo reference="base_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
@@ -2152,6 +2114,306 @@
       <back_joint>WheelB</back_joint>
       <wheel_separation>0.310</wheel_separation>
       <wheel_radius>0.07</wheel_radius>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger11</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger12</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger13</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger21</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger21</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger22</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger23</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger31</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger32</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger33</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger41</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger42</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LFinger43</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+    <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LThumb1</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>LThumb2</joint_name>
+      <mimic_joint>LHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+    <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger11</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger12</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger13</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger21</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger21</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger22</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger23</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger31</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger32</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger33</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger41</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger42</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RFinger43</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+    <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RThumb1</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin
+      filename="gz-sim-joint-mimic-system"
+      name="gz::sim::systems::JointMimic">
+      <joint_name>RThumb2</joint_name>
+      <mimic_joint>RHand</mimic_joint>
+      <multiplier>0.872665</multiplier>
+      <offset>0.0</offset>
     </plugin>
   </gazebo>
 </robot>

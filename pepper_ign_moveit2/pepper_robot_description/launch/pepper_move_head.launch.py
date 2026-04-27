@@ -32,7 +32,7 @@ def main(args=None):
     action_client = PepperHeadClient()
 
     # Send the movement (Yaw: 0.4, Pitch: 0.2)
-    future = action_client.send_goal(0.4, 0.2)
+    future = action_client.send_goal(0.0, 0.0)
 
     rclpy.spin_until_future_complete(action_client, future)
     print("Movement complete!")

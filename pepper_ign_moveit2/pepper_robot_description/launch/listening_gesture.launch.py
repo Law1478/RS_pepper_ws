@@ -21,7 +21,8 @@ class PepperWaveHand(Node):
         self.state_file = "/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_description/launch/previous_gesture.txt"
         os.makedirs(os.path.dirname(self.state_file), exist_ok=True)
 
-    # --- THE HELPER FUNCTION ---
+
+    # Function to process the waypoints
     def create_goal(self, joint_names, waypoints):
         goal_msg = FollowJointTrajectory.Goal()
         goal_msg.trajectory.joint_names = joint_names
@@ -37,12 +38,13 @@ class PepperWaveHand(Node):
             goal_msg.trajectory.points.append(point)
         return goal_msg
 
+    # Function to define the parameters for each joint
     def explaining_motions(self):
-        # 1. Define Arm Data
+
         head_joints = ['HeadYaw', 'HeadPitch']
 
         head_wps = [
-            [0.0, 0.0, 0.0],
+            [1.0, 0.4, 0.5],
         ]
 
 
@@ -50,20 +52,13 @@ class PepperWaveHand(Node):
         R_arm_joints = ['RShoulderPitch', 'RShoulderRoll', 'RElbowYaw', 'RElbowRoll', 'RWristYaw']
 
         L_arm_wps = [
-            [1.274, 0.067, -0.485, -0.706, -0.424, 0.5],
-            [0.958, 0.151, -0.981, -0.790, -1.824, 1.0],
-            [0.958, 0.151, -0.981, -0.790, -1.824, 2.0],
-            [1.274, 0.067, -0.485, -0.706, -0.424, 2.5] 
+            [1.3, 0.07, -0.5, -0.7, -0.42, 0.0],
         ]
 
         R_arm_wps = [
-            [1.274, 0.067, 0.485, 0.706, 0.424, 0.5],
-            [0.958, 0.151, 0.981, 0.790, 1.824, 1.0],
-            [0.958, 0.151, 0.981, 0.790, 1.824, 1.5],
-            [1.274, 0.067, 0.485, 0.706, 0.424, 2.0] 
+            [0.169, -1.0, 1.184, 1.562, -0.522, 0.4],
+            [0.169, 0.059, 1.184, 1.562, -0.522, 0.8],
         ]
-
-        R_arm_wps = self.execute_gesture(R_arm_wps)
 
         r_hand_joints = [
             'RFinger11',
@@ -103,14 +98,11 @@ class PepperWaveHand(Node):
         ]
         # 11 12 13      21 22 23        31 32 33        41 42 43        T1 T2
         l_hand_wps = [
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   1.0],
-            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   2.0],
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   2.5]
+            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   0.5],
         ]
+
         r_hand_wps = [
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   1.0],
-            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   1.7],
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   2.5]
+            [ 1.0, 0.9, 0.9,     0.9, 0.8, 0.8,    0.8, 0.7, 0.7,    0.7, 0.6, 0.6,    0.5, 0.25,   0.5],
         ]
 
         # 3. Create goals using the helper
@@ -137,45 +129,19 @@ class PepperWaveHand(Node):
         # Return the longest duration future so the script stays alive until it's done
         return self.left_hand_client.send_goal_async(l_hand_goal)
 
-    
-    def get_last_gesture_name(self):
 
-        # Reads the name of the last script that ran
-        if os.path.exists(self.state_file):
-            with open(self.state_file, 'r') as f:
-                return f.read().strip()
-        else:
-            return "none"
     def set_current_gesture_name(self, name):
         # Saves the current script name for the next one to find
         with open(self.state_file, 'w') as f:
             f.write(name)
 
-    def execute_gesture(self, R_arm_waypoints):
-        last_script = self.get_last_gesture_name()
-
-        self.get_logger().info(last_script)
-
-        # If 'listening_gesture' was last, prepend a transition waypoint,
-        if last_script == "listening_gesture.launch.py":
-
-            self.get_logger().info("Transitioning from 'Listening' state...")
-            # Define the 'Bridge' waypoint (Pose + Time)
-            bridge_wp = [0.169, -0.5, 1.184, 0.5, -0.522, 0.5] 
-            
-            # Prepend and shift time
-            R_arm_wps = [bridge_wp] + [wp[:-1] + [wp[-1] + 0.6] for wp in R_arm_waypoints]
-
-            return R_arm_wps
-        else:
-            return R_arm_waypoints
 
 def main(args=None):
     rclpy.init(args=args)
     node = PepperWaveHand()
     future = node.explaining_motions()
     rclpy.spin_until_future_complete(node, future)
-    node.set_current_gesture_name("explain_gesture.launch.py")
+    node.set_current_gesture_name("listening_gesture.launch.py")
     node.destroy_node()
     rclpy.shutdown()
 

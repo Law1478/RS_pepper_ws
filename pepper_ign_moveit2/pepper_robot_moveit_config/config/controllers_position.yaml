@@ -63,7 +63,20 @@ left_arm_controller:
 left_hand_controller:
   ros__parameters:
     joints:
-      - LHand
+      - LFinger11
+      - LFinger12
+      - LFinger13
+      - LFinger21
+      - LFinger22
+      - LFinger23
+      - LFinger31
+      - LFinger32
+      - LFinger33
+      - LFinger41
+      - LFinger42
+      - LFinger43
+      - LThumb1
+      - LThumb2
     command_interfaces:
       - position
     state_interfaces:
@@ -87,7 +100,20 @@ right_arm_controller:
 right_hand_controller:
   ros__parameters:
     joints:
-      - RHand
+      - RFinger11  # Add this here
+      - RFinger12
+      - RFinger13
+      - RFinger21
+      - RFinger22
+      - RFinger23
+      - RFinger31
+      - RFinger32
+      - RFinger33
+      - RFinger41
+      - RFinger42
+      - RFinger43
+      - RThumb1
+      - RThumb2
     command_interfaces:
       - position
     state_interfaces:
