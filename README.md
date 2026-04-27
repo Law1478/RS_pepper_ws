@@ -25,3 +25,9 @@ Ensuring pepper is ready to go:
       - furthermore, use " ros2 action list " to find the names " FollowJointTrajectory " servers, and at the top of the gesture files, replace filenames in the __ init __ definitions with whatever you get
 3. test stiffness (idk how to do this tbh)
 4. run python3 [your filepath]/pepper_ign_moveit2/pepper_robot_description/launch/get_pose.launch.py
+
+
+ALSO:
+try to run this on pepper's tablet: pepper_ign_moveit2/pepper_robot_description/tablet_assets
+first all, host the https server using " python3 -m http.server 8080 "
+then, ssh into pepper and run " ros2 service call /tablet/load_url naoqi_bridge_msgs/srv/SetString "{data: 'http://[YOUR IP ADDRESS]/pepper_ign_moveit2/pepper_robot_description/tablet_assets/test_write.html'}" "
