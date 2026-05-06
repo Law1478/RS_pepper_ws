@@ -1,1 +1,0 @@
-/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_description/launch/move_pepper.launch.py

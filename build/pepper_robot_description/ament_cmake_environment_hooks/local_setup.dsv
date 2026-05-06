@@ -1,4 +1,0 @@
-source;share/pepper_robot_description/environment/ament_prefix_path.sh
-source;share/pepper_robot_description/environment/path.sh
-source;share/pepper_robot_description/environment/pepper_robot_description.sh
-source;share/pepper_robot_description/environment/pepper_robot_description.dsv
