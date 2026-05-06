@@ -1,4 +1,47 @@
-import os
+from control_msgs.action import FollowJointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
+
+def create_goal(joint_names, waypoints):
+    """Helper to convert waypoints into a ROS 2 Action Goal."""
+    goal_msg = FollowJointTrajectory.Goal()
+    goal_msg.trajectory.joint_names = joint_names
+
+    for wp in waypoints:
+        point = JointTrajectoryPoint()
+        point.positions = wp[:-1]
+        total_time = wp[-1]
+        point.time_from_start.sec = int(total_time)
+        point.time_from_start.nanosec = int((total_time % 1) * 1e9)
+        goal_msg.trajectory.points.append(point)
+    return goal_msg
+
+def execute(node):
+    """The function the Manager calls."""
+    node.get_logger().info('Executing Wave gesture via external module...')
+
+    head_joints = ['HeadYaw', 'HeadPitch']
+    head_wps = [
+        [0.0, -0.1, 0.5],
+        [0.0, -0.3, 1.0],
+        [0.0, -0.1, 1.5],
+        [0.0, -0.3, 2.0],
+    ]
+
+    head_goal = create_goal(head_joints, head_wps)
+
+    # We use the ActionClient already stored inside 'node'
+    return node.head_client.send_goal_async(head_goal)
+
+
+
+
+
+
+
+
+
+
+""" import os
 import numpy as np
 import rclpy
 from rclpy.action import ActionClient
@@ -66,3 +109,4 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+ """
