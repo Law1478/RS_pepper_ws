@@ -45,15 +45,21 @@ class PepperWaveHand(Node):
             [0.0, 0.0, 0.0],
         ]
 
+
         L_arm_joints = ['LShoulderPitch', 'LShoulderRoll', 'LElbowYaw', 'LElbowRoll', 'LWristYaw']
         R_arm_joints = ['RShoulderPitch', 'RShoulderRoll', 'RElbowYaw', 'RElbowRoll', 'RWristYaw']
 
         L_arm_wps = [
-            [1.3, 0.09, -0.5, -0.7, -0.42, 1.0],
+            [1.206, 0.193, -1.409, -1.092, -1.2, 0.5],
+            [0.846, 0.378, -1.635, -1.562, 0.0, 1.0],
+            [1.229, 0.009, -1.049, -0.638, -1.2, 1.5]
         ]
 
         R_arm_wps = [
-            [1.3, 1.5, 0.5, 0.7, 0.42, 1.0],
+            [1.206, 0.193, 1.409, 1.092, 1.2, 0.4],
+            [0.846, 0.378, 1.635, 1.562, 0.0, 1.0],
+            [1.229, 0.009, 1.049, 0.638, 1.2, 1.4]
+            
         ]
 
         R_arm_wps = self.execute_gesture(R_arm_wps)
@@ -96,11 +102,14 @@ class PepperWaveHand(Node):
         ]
         # 11 12 13      21 22 23        31 32 33        41 42 43        T1 T2
         l_hand_wps = [
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   0.0]
+            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   0.5],
+            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   1.0],
+            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   2.5],
         ]
-
         r_hand_wps = [
-            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   0.0]
+            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   0.4],
+            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   1.0],
+            [ 0.75, 0.75, 0.75,     0.5, 0.5, 0.5,    0.25, 0.25, 0.25,    0.0, 0.0, 0.0,    1.0, 2.0,   1.4],
         ]
 
         # 3. Create goals using the helper
@@ -127,6 +136,7 @@ class PepperWaveHand(Node):
         # Return the longest duration future so the script stays alive until it's done
         return self.left_hand_client.send_goal_async(l_hand_goal)
 
+    
     def get_last_gesture_name(self):
 
         # Reads the name of the last script that ran
@@ -153,7 +163,7 @@ class PepperWaveHand(Node):
             bridge_wp = [0.169, -0.5, 1.184, 0.5, -0.522, 0.5] 
             
             # Prepend and shift time
-            R_arm_wps = [bridge_wp] + [wp[:-1] + [wp[-1] + 1.0] for wp in R_arm_waypoints]
+            R_arm_wps = [bridge_wp] + [wp[:-1] + [wp[-1] + 0.6] for wp in R_arm_waypoints]
 
             return R_arm_wps
         else:
@@ -164,7 +174,7 @@ def main(args=None):
     node = PepperWaveHand()
     future = node.explaining_motions()
     rclpy.spin_until_future_complete(node, future)
-    node.set_current_gesture_name("default_pose.launch.py")
+    node.set_current_gesture_name("explain_gesture.launch.py")
     node.destroy_node()
     rclpy.shutdown()
 

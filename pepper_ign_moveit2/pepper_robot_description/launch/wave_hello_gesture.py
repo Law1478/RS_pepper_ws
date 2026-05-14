@@ -1,4 +1,139 @@
 import os
+from control_msgs.action import FollowJointTrajectory
+from trajectory_msgs.msg import JointTrajectoryPoint
+
+def create_goal(joint_names, waypoints):
+    """Converts waypoint lists into a FollowJointTrajectory Goal."""
+    goal_msg = FollowJointTrajectory.Goal()
+    goal_msg.trajectory.joint_names = joint_names
+
+    for wp in waypoints:
+        point = JointTrajectoryPoint()
+        point.positions = [float(p) for p in wp[:-1]] # Ensure floats
+        total_time = float(wp[-1])
+        point.time_from_start.sec = int(total_time)
+        point.time_from_start.nanosec = int((total_time % 1) * 1e9)
+        goal_msg.trajectory.points.append(point)
+    return goal_msg
+
+def execute(node):
+        # 1. Define Arm Data
+        head_joints = ['HeadYaw', 'HeadPitch']
+
+        head_wps = [
+            [0.0, 0.0, 0.0],
+        ]
+
+
+        L_arm_joints = ['LShoulderPitch', 'LShoulderRoll', 'LElbowYaw', 'LElbowRoll', 'LWristYaw']
+        R_arm_joints = ['RShoulderPitch', 'RShoulderRoll', 'RElbowYaw', 'RElbowRoll', 'RWristYaw']
+
+        L_arm_wps = [
+            [1.274, 0.067, -0.485, -0.706, -0.424, 0.5],
+            [0.13, 0.3, -1.951, -1.562, 0.877, 1.0],
+            [0.1, 0.0, -1.545, -1.7, 0.9, 1.5],
+            [0.13, 0.3, -1.951, -1.562, 0.877, 2.0],
+            [0.1, 0.0, -1.545, -1.7, 0.9, 2.5],
+            [0.13, 0.3, -1.8, -1.562, 0.877, 3.0],
+        ]
+
+        R_arm_wps = [
+            [1.3, 0.07, 0.5, 0.7, 0.42, 0.0],
+        ]
+
+        
+
+        r_hand_joints = [
+            'RFinger11',
+            'RFinger12',
+            'RFinger13',
+            'RFinger21',
+            'RFinger22',
+            'RFinger23',
+            'RFinger31',
+            'RFinger32',
+            'RFinger33',
+            'RFinger41',
+            'RFinger42',
+            'RFinger43',
+            'RThumb1',
+            'RThumb2'
+            
+        ]
+
+
+        l_hand_joints = [
+            'LFinger11',
+            'LFinger12',
+            'LFinger13',
+            'LFinger21',
+            'LFinger22',
+            'LFinger23',
+            'LFinger31',
+            'LFinger32',
+            'LFinger33',
+            'LFinger41',
+            'LFinger42',
+            'LFinger43',
+            'LThumb1',
+            'LThumb2'
+            
+        ]
+        # 11 12 13      21 22 23        31 32 33        41 42 43        T1 T2
+        l_hand_wps = [
+            [ 1.0, 0.9, 0.9,     0.9, 0.8, 0.8,    0.8, 0.7, 0.7,    0.7, 0.6, 0.6,    0.5, 0.25,   0.7],
+        ]
+
+        r_hand_wps = [
+            [-0.0, -0.0,-0.0,    -0.25, -0.25, -0.25,    -0.5, -0.5, -0.5,    -0.75, -0.75, -0.75,   0.5, 0.5,   0.0],
+        ]
+
+        
+        # 3. Create goals using the helper
+        head_goal = create_goal(head_joints, head_wps)
+
+        L_arm_goal = create_goal(L_arm_joints, L_arm_wps)
+        R_arm_goal = create_goal(R_arm_joints, R_arm_wps)
+
+        l_hand_goal = create_goal(l_hand_joints, l_hand_wps)
+        r_hand_goal = create_goal(r_hand_joints, r_hand_wps)
+
+        # 4. Fire them off simultaneously
+        node.get_logger().info('Executing synchronized gesture...')
+
+
+        # idk why exactly, but putting them in a list allows me to know when they start and end?
+        future = []
+        
+        future.append(node.head_client.send_goal_async(head_goal))
+
+        future.append(node.left_arm_client.send_goal_async(L_arm_goal))
+        future.append(node.right_arm_client.send_goal_async(R_arm_goal))
+
+        future.append(node.right_hand_client.send_goal_async(r_hand_goal))
+        future.append(node.left_hand_client.send_goal_async(l_hand_goal))
+    
+        # 3. Update State File
+        try:
+            with open(node.state_file, 'w') as f:
+                f.write("listening_gesture")
+        except Exception as e:
+            node.get_logger().error(f"Failed to update state file: {e}")
+            
+        return future
+
+
+
+
+
+
+
+
+
+
+
+
+""" import os
 import numpy as np
 import rclpy
 from rclpy.action import ActionClient
@@ -185,4 +320,4 @@ def main(args=None):
     rclpy.shutdown()
 
 if __name__ == '__main__':
-    main()
+    main() """

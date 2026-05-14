@@ -9,15 +9,16 @@ from control_msgs.action import FollowJointTrajectory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
 
-# Import your modular script
+# Import modular scripts
 import nodding_gesture
-print('flag 1')
+import listening_gesture
+import wave_hello_gesture
+import explain_gesture
+import default_pose
 
 class GestureManager(Node):
-    print('flag 2')
 
     def __init__(self):
-        print('flag 3')
         super().__init__('gesture_manager')
 
         # Initialize clients 
@@ -35,26 +36,38 @@ class GestureManager(Node):
         self.command_sub = self.create_subscription(
             String, '/pepper/gesture_command', self.command_callback, 10)
 
-    print('flag 4')
 
     def command_callback(self, msg):
-        print('5')
         cmd = msg.data.lower()
         self.get_logger().info(cmd)
-    
+        
         if cmd == "nod":
             # Hand off the work to the external script
             nodding_gesture.execute(self)
+        elif cmd == "listen":
+            # Hand off the work to the external script
+            listening_gesture.execute(self)
+            print(listening_gesture.execute(self))
+        elif cmd == "wave_hello":
+            # Hand off the work to the external script
+            wave_hello.execute(self)
+        elif cmd == "explain":
+            # Hand off the work to the external script
+            explain_gesture.execute(self)
+        elif cmd == "default":
+            default_pose.execute(self)
+
+            
         else:
             self.get_logger().info(f"Unknown command: {cmd}")
     
-    print('flag 6')
 
 
 def main(args=None):
-    print('flag 7')
     rclpy.init(args=args)
     node = GestureManager()
+    
+    
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

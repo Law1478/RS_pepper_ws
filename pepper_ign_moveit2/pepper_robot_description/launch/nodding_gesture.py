@@ -1,36 +1,49 @@
+import os
 from control_msgs.action import FollowJointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
 
 def create_goal(joint_names, waypoints):
-    """Helper to convert waypoints into a ROS 2 Action Goal."""
+    """Converts waypoint lists into a FollowJointTrajectory Goal."""
     goal_msg = FollowJointTrajectory.Goal()
     goal_msg.trajectory.joint_names = joint_names
 
     for wp in waypoints:
         point = JointTrajectoryPoint()
-        point.positions = wp[:-1]
-        total_time = wp[-1]
+        point.positions = [float(p) for p in wp[:-1]] # Ensure floats
+        total_time = float(wp[-1])
         point.time_from_start.sec = int(total_time)
         point.time_from_start.nanosec = int((total_time % 1) * 1e9)
         goal_msg.trajectory.points.append(point)
     return goal_msg
 
 def execute(node):
-    """The function the Manager calls."""
-    node.get_logger().info('Executing Wave gesture via external module...')
+    """Called by GestureManager. 'node' is the manager instance."""
+    node.get_logger().info('Executing Nodding gesture...')
 
+    # 1. Define Motion
     head_joints = ['HeadYaw', 'HeadPitch']
+    # Format: [Yaw, Pitch, Time]
     head_wps = [
-        [0.0, -0.1, 0.5],
-        [0.0, -0.3, 1.0],
-        [0.0, -0.1, 1.5],
-        [0.0, -0.3, 2.0],
+        [0.0, 0.25, 0.6],   # Chin down
+        [0.0, -0.1, 1.2],   # Chin up
+        [0.0, 0.25, 1.8],   # Chin down
+        [0.0, 0.0, 2.4],    # Reset to neutral
     ]
 
+    # 2. Build and Send
     head_goal = create_goal(head_joints, head_wps)
-
-    # We use the ActionClient already stored inside 'node'
-    return node.head_client.send_goal_async(head_goal)
+    
+    # We return the future so the manager could wait for it if needed
+    future = node.head_client.send_goal_async(head_goal)
+    
+    # 3. Update State File
+    try:
+        with open(node.state_file, 'w') as f:
+            f.write("nodding_gesture")
+    except Exception as e:
+        node.get_logger().error(f"Failed to update state file: {e}")
+        
+    return future
 
 
 
