@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #1a1a1a;
+            color: white;
+            margin: 0;
+            overflow: hidden; 
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            padding: 20px;
+            box-sizing: border-box;
+            gap: 30px;
+            align-items: flex-start; 
+        }
+
+        /* Left Column: Images */
+        #image-gallery {
+            flex: 1;
+            height: calc(100vh - 40px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* ONLY animates if builder.py provides this class */
+        .animate-scroll {
+            animation: scrollDown 20s linear infinite;
+        }
+
+        /* Centers images if they aren't scrolling */
+        .static-gallery {
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-50%); }
+            100% { transform: translateY(0%); }
+        }
+
+        #image-gallery img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #444;
+            flex-shrink: 0; 
+            display: block;
+        }
+
+        /* Right Column: Scrolling Text */
+        .text-column {
+            flex: 2;
+            height: calc(100vh - 40px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            overflow-y: auto;
+            display: block; 
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+            padding-bottom: 5px;
+            font-size: 5rem;
+            color: #00d4ff;
+            line-height: 1.2;
+        }
+
+        .text-box {
+            font-size: 50px;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-wrap;
+            margin: 0;
+            padding: 5px;
+        }
+
+        .text-column::-webkit-scrollbar { display: none; }
+        .text-column { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div id="image-gallery">
+            <!-- We add the {{scroll_class}} placeholder here -->
+            <div class="scroll-container {{scroll_class}}">
+                {{image_gallery_html}}
+            </div>
+        </div>
+
+        <div class="text-column">
+            <h1>{{artifact_title}}</h1>
+            <div class="text-box">{{description_text}}</div>
+        </div>
+    </div>
+
+    <script>
+        let currentCommand = null;
+
+        // Auto-refresh logic (checks for ROS command changes)
+        async function checkForUpdates() {
+            try {
+                const response = await fetch('current_state.json', { cache: "no-store" });
+                const data = await response.json();
+                if (currentCommand === null) {
+                    currentCommand = data.command;
+                } else if (data.command !== currentCommand) {
+                    window.location.reload();
+                }
+            } catch (error) {}
+        }
+        setInterval(checkForUpdates, 300);
+
+        // Auto-cloner for seamless scrolling
+        function setupGallery() {
+            const container = document.querySelector('.scroll-container');
+            // If Python decided we should scroll, duplicate the images now
+            if (container.classList.contains('animate-scroll')) {
+                container.innerHTML += container.innerHTML;
+            }
+        }
+
+        // Auto-scroll logic for Text
+        const scrollSpeed = 0.8; 
+        const delayBeforeStart = 3000; 
+
+        function startAutoScroll() {
+            const textColumn = document.querySelector('.text-column');
+            textColumn.scrollTop = 0;
+
+            function scrollStep() {
+                textColumn.scrollTop += scrollSpeed;
+                if (textColumn.scrollTop + textColumn.clientHeight >= textColumn.scrollHeight) {
+                    return; 
+                }
+                requestAnimationFrame(scrollStep);
+            }
+
+            setTimeout(() => {
+                requestAnimationFrame(scrollStep);
+            }, delayBeforeStart);
+        }
+
+        // Run everything when the page loads
+        window.addEventListener('load', () => {
+            setupGallery();   // Clone images if needed
+            startAutoScroll(); // Start text crawl
+        });
+    </script>
+</body>
+</html>
