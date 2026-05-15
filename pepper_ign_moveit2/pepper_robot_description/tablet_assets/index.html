@@ -20,12 +20,30 @@
             align-items: flex-start; 
         }
 
-        /* Left Column: Images */
-        #image-gallery {
+        /* Left Side Structure: Stack gallery on top of buttons */
+        .left-column {
             flex: 1;
-            height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 40px); 
+            gap: 20px;
+        }
+
+        /* Left Column Sub-component: Images */
+        #image-gallery {
+            flex: 1; 
             overflow: hidden;
             position: relative;
+            -webkit-mask-image: linear-gradient(to bottom, 
+                transparent 0%, 
+                black 10%, 
+                black 90%, 
+                transparent 100%);
+            mask-image: linear-gradient(to bottom, 
+                transparent 0%, 
+                black 10%, 
+                black 90%, 
+                transparent 100%);
         }
 
         .scroll-container {
@@ -57,6 +75,54 @@
             border: 2px solid #444;
             flex-shrink: 0; 
             display: block;
+        }
+
+        /* Controls Container for side-by-side buttons */
+        .control-panel {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* Base tablet-friendly button styling */
+        .zoom-btn, .nav-btn {
+            background: #2a2a2a;
+            color: white;
+            border: 2px solid #444;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        /* Text Resizing buttons grow to fill space normally */
+        .zoom-btn {
+            flex: 2; /* Relative size weighting */
+        }
+
+        /* The Menu/Navigation button is exactly half the width */
+        .nav-btn {
+            flex: 1; /* Relative size weighting */
+            background: #332244; /* Subtle purple tint so it stands out as a unique action */
+            border-color: #553377;
+        }
+
+        .zoom-btn:active {
+            background: #00d4ff;
+            color: #1a1a1a;
+            border-color: #00d4ff;
+            transform: scale(0.98); 
+        }
+
+        .nav-btn:active {
+            background: #a855f7;
+            color: #1a1a1a;
+            border-color: #a855f7;
+            transform: scale(0.98);
         }
 
         /* Right Column: Scrolling Text */
@@ -94,28 +160,46 @@
 </head>
 <body>
     <div class="main-wrapper">
-        <div id="image-gallery">
-            <!-- We add the animate-scroll placeholder here -->
-            <div class="scroll-container animate-scroll">
-                <img src="exhibition_images/double_pendulum/G1.jpg" style="width:100%; margin-bottom:20px;">
-<img src="exhibition_images/double_pendulum/atlas-blue-mobile-copy.jpg" style="width:100%; margin-bottom:20px;">
-<img src="exhibition_images/double_pendulum/butterfly_effect.jpg" style="width:100%; margin-bottom:20px;">
-<img src="exhibition_images/double_pendulum/double_pendulum.gif" style="width:100%; margin-bottom:20px;">
+        <div class="left-column">
+            <div id="image-gallery">
+                <div class="scroll-container animate-scroll">
+                    <img src="exhibition_images/conclusion_compilation/LED_crystal.webp" style="width:100%; margin-bottom:20px;">
+<img src="exhibition_images/conclusion_compilation/crane.jpg" style="width:100%; margin-bottom:20px;">
+<img src="exhibition_images/conclusion_compilation/cryptex.jpg" style="width:100%; margin-bottom:20px;">
+<img src="exhibition_images/conclusion_compilation/desk_lamp.jpg" style="width:100%; margin-bottom:20px;">
+<img src="exhibition_images/conclusion_compilation/pendulum.png" style="width:100%; margin-bottom:20px;">
+<img src="exhibition_images/conclusion_compilation/walking_robot.jpg" style="width:100%; margin-bottom:20px;">
 
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <button class="nav-btn" onclick="navigateToPage('menu.html')">Tour Select</button>
+                <button class="zoom-btn" onclick="adjustTextSize(-5)">A- (Smaller)</button>
+                <button class="zoom-btn" onclick="adjustTextSize(5)">A+ (Larger)</button>
             </div>
         </div>
 
         <div class="text-column">
-            <h1>Double Pendulum</h1>
-            <div class="text-box">Now we arrive at a display of chaotic kinematics. This is a double pendulum, otherwise known as a "chaotic pendulum". 
+            <h1>Conclusion Compilation</h1>
+            <div class="text-box">To conclude the Pepper tour, I am a combination of many of the aspects of these exhibitions.
 
-This is a demonstration of the incredible number of outputs which even as little as 2 joints can create. The double pendulum experiment is one of an array of examples which depict a great change in output from a relatively negligible change in starting variables. Other examples you might be familiar with include turbulence, the butterfly effect, and the 3 body problem.
+As a Social Robot, I am made with empathetic features to mimic human behaviour so that I may be more sociable, similar to the Walking Robot.
 
-The discovery Lorenz systems gave way to what is called "Chaos Theory". This theory stated that things which you once thought were completely random were predictable if all variables were accounted for with more precision than your feeble human minds could produce or measure.
+Of course I am programmed, but not everyone should be allowed to have control over me, for that purpose the same cryptography behind the cryptex is utilised.
 
-It could be said that when combining chaose theory with previous innovations in automata allowed for much more dynamic calculations to dictate the perfect kinematic instructions for a robot to perform much more refined motion.
+It helps greatly to have a screen which you humans may read text or see images from, of which it is important to have colour. Those colours are created through R.G.B light emitting diodes, the function of which you can see in the L.E.D crystal exhibit.
 
-Then my more advanced cousins such as Boston Dynamic's Atlas, or even the more recent Unitree's G1 robot become able to excel in incredibly dynamic and accurate kinematic motion calculation.</div>
+Social robots benefit alot from having body gestures. Having as little as 2 kinematic joints allow for an incredible number of movements and motions, you can see this in the Double Pendulum.
+
+Of course we want to be able to control those joints individually to manipulate the effectively affect the end affector. To show this, we can look to the ever reliable crane.
+
+The penultimate showcase of simple kinematic manipulation must be the articulated desk lamp. Humans control individual joints positions and keep limbs in desirable locations to highlight subjects and allow for a greater understanding of any particular focus point.
+
+Thank you for listening to my tour.
+
+
+</div>
         </div>
     </div>
 
@@ -139,7 +223,6 @@ Then my more advanced cousins such as Boston Dynamic's Atlas, or even the more r
         // Auto-cloner for seamless scrolling
         function setupGallery() {
             const container = document.querySelector('.scroll-container');
-            // If Python decided we should scroll, duplicate the images now
             if (container.classList.contains('animate-scroll')) {
                 container.innerHTML += container.innerHTML;
             }
@@ -166,10 +249,27 @@ Then my more advanced cousins such as Boston Dynamic's Atlas, or even the more r
             }, delayBeforeStart);
         }
 
+        // Text Resizer Functionality
+        function adjustTextSize(change) {
+            const textBox = document.querySelector('.text-box');
+            let currentSize = parseInt(window.getComputedStyle(textBox).fontSize) || 50;
+            let newSize = currentSize + change;
+            
+            // Set boundaries so text doesn't become invisible or too massive
+            if (newSize >= 20 && newSize <= 100) {
+                textBox.style.fontSize = newSize + 'px';
+            }
+        }
+
+        // NEW Navigation Functionality
+        function navigateToPage(url) {
+            window.location.href = url;
+        }
+
         // Run everything when the page loads
         window.addEventListener('load', () => {
-            setupGallery();   // Clone images if needed
-            startAutoScroll(); // Start text crawl
+            setupGallery();   
+            startAutoScroll(); 
         });
     </script>
 </body>
