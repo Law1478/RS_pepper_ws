@@ -1,0 +1,121 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    head_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    torso_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    left_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    left_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    right_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    right_hand_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+head_controller:
+  ros__parameters:
+    joints:
+      - HeadYaw
+      - HeadPitch
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+torso_controller:
+  ros__parameters:
+    joints:
+      - HipRoll
+      - HipPitch
+      - KneePitch
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+left_arm_controller:
+  ros__parameters:
+    joints:
+      - LShoulderPitch
+      - LShoulderRoll
+      - LElbowYaw
+      - LElbowRoll
+      - LWristYaw
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+left_hand_controller:
+  ros__parameters:
+    joints:
+      - LFinger11
+      - LFinger12
+      - LFinger13
+      - LFinger21
+      - LFinger22
+      - LFinger23
+      - LFinger31
+      - LFinger32
+      - LFinger33
+      - LFinger41
+      - LFinger42
+      - LFinger43
+      - LThumb1
+      - LThumb2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+right_arm_controller:
+  ros__parameters:
+    joints:
+      - RShoulderPitch
+      - RShoulderRoll
+      - RElbowYaw
+      - RElbowRoll
+      - RWristYaw
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+right_hand_controller:
+  ros__parameters:
+    joints:
+      - RFinger11  # Add this here
+      - RFinger12
+      - RFinger13
+      - RFinger21
+      - RFinger22
+      - RFinger23
+      - RFinger31
+      - RFinger32
+      - RFinger33
+      - RFinger41
+      - RFinger42
+      - RFinger43
+      - RThumb1
+      - RThumb2
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
