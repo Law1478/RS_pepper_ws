@@ -7,7 +7,7 @@
     "text_file": "exhibition_explanation/combination_vault_exhibit_explanation.txt",
     "image_folder": "exhibition_images/combination_vault"
   },
-  "LED_crystal_exhibit_exhibit": {
+  "LED_crystal_exhibit": {
     "text_file": "exhibition_explanation/LED_crystal_exhibit_explanation.txt",
     "image_folder": "exhibition_images/LED_crystal"
   },
@@ -15,12 +15,12 @@
     "text_file": "exhibition_explanation/glowing_double_pendulum_exhibit_explanation.txt",
     "image_folder": "exhibition_images/double_pendulum"
   },
-  "crane_exhibit_exhibit": {
-    "text_file": "exhibition_explanation/crane_exhibit_exhibit_explanation.txt",
+  "crane_exhibit": {
+    "text_file": "exhibition_explanation/crane_exhibit_explanation.txt",
     "image_folder": "exhibition_images/crane"
   },
-  "articulated_lamp_exhibit_exhibit": {
-    "text_file": "exhibition_explanation/articulated_lamp_exhibit_exhibit_explanation.txt",
+  "articulated_lamp_exhibit": {
+    "text_file": "exhibition_explanation/articulated_lamp_exhibit_explanation.txt",
     "image_folder": "exhibition_images/articulated_lamp"
   },
   "conclusion": {

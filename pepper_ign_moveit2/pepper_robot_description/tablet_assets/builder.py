@@ -71,7 +71,7 @@ class TabletBuilderNode(Node):
         print(f"Detected image count: {num_images}")
 
         # If 3 or more images, turn on the scroll animation
-        scroll_class = "animate-scroll" if num_images >= 3 else "static-gallery"
+        scroll_class = "animate-scroll" if num_images >= 2 else "static-gallery"
         
         # Read the artifact text file safely
         with open(text_file_abs, 'r') as f:
