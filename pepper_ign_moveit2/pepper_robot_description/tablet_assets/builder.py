@@ -13,6 +13,7 @@ from std_msgs.msg import String
 # Global safety anchor: Get the absolute path of the directory containing this script
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 class TabletBuilderNode(Node):  
 
     def __init__(self):
@@ -25,18 +26,23 @@ class TabletBuilderNode(Node):
             self.listener_callback,
             10)
         
+        # Publisher for the menu selections
+        self.menu_publisher = self.create_publisher(
+            String, 
+            '/tour_retrieve', 
+            10)
+
         self.get_logger().info("Tablet Builder Node is ready.")
 
     def listener_callback(self, msg):
         command = msg.data.strip()
         self.get_logger().info(f"Rebuilding page for command: {command}")
         
-        # Trigger the build function
         print(command)
         self.build_page(command)
 
     def build_page(self, command_name):
-        # 1. Load the manifest using absolute positioning
+        # Load the manifest using absolute positioning
         manifest_path = os.path.join(SCRIPT_DIR, 'exhibition_commands.json')
         with open(manifest_path, 'r') as f:
             manifest = json.load(f)
@@ -47,7 +53,7 @@ class TabletBuilderNode(Node):
 
         config = manifest[command_name]
 
-        # 2. Convert raw config paths to absolute paths for Python filesystem checks
+        # Convert raw config paths to absolute paths for Python filesystem checks
         img_folder_abs = os.path.join(SCRIPT_DIR, config['image_folder'])
         text_file_abs = os.path.join(SCRIPT_DIR, config['text_file'])
 
@@ -71,7 +77,7 @@ class TabletBuilderNode(Node):
         with open(text_file_abs, 'r') as f:
             description = f.read()
 
-        # 3. Gather all images from the specified folder
+        # Gather all images from the specified folder
         valid_extensions = ('.webp', '.jpeg', '.jpg', '.gif', '.png')
         
         gallery_html = ""
@@ -84,7 +90,7 @@ class TabletBuilderNode(Node):
         else:
             print(f"Warning: Folder {img_folder_abs} not found.")
 
-        # 4. Assemble the final HTML using absolute template paths
+        # Assemble the final HTML using absolute template paths
         layout_path = os.path.join(SCRIPT_DIR, 'layout.html')
         with open(layout_path, 'r') as f:
             template = f.read()
@@ -113,16 +119,46 @@ class TabletBuilderNode(Node):
     
         print(f"Signal sent for {command_name}")
 
-def start_server():
+
+# Global server loop runner function (cleanly isolated from Node class scopes)
+def start_server(node):
     # Force the local server context directory straight to our root assets folder
     os.chdir(SCRIPT_DIR)
     
     PORT = 8000
-    Handler = http.server.SimpleHTTPRequestHandler
-    
+
+    # Define custom request handler class inline to access the 'node' reference directly
+    class ROSRequestHandler(http.server.SimpleHTTPRequestHandler):
+        def do_POST(self):
+            if self.path == '/tour_retrieve':
+                content_length = int(self.headers['Content-Length'])
+                post_data = self.rfile.read(content_length)
+                
+                try:
+                    data = json.loads(post_data.decode('utf-8'))
+                    
+                    # Package up your message and publish directly to the ROS graph
+                    msg = String()
+                    msg.data = json.dumps(data) 
+                    node.menu_publisher.publish(msg)
+                    node.get_logger().info(f"Published selections to /tour_retrieve: {msg.data}")
+                    
+                    self.send_response(200)
+                    self.send_header('Content-Type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(b'{"status": "published"}')
+                    
+                except Exception as e:
+                    node.get_logger().error(f"Failed to parse POST data: {str(e)}")
+                    self.send_response(400)
+                    self.end_headers()
+            else:
+                self.send_response(404)
+                self.end_headers()
+
     socketserver.TCPServer.allow_reuse_address = True
     
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    with socketserver.TCPServer(("", PORT), ROSRequestHandler) as httpd:
         print(f"Serving at http://localhost:{PORT}")
         
         def open_browser():
@@ -130,7 +166,7 @@ def start_server():
             print("Opening browser...")
             webbrowser.open(f"http://localhost:{PORT}/index.html")
 
-        Handler.extensions_map.update({
+        ROSRequestHandler.extensions_map.update({
             '.webp': 'image/webp',
         })
         threading.Thread(target=open_browser).start()
@@ -141,11 +177,13 @@ def start_server():
             httpd.shutdown()
             print("\nServer stopped.")
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = TabletBuilderNode()
     
-    threading.Thread(target=start_server, daemon=True).start()
+    # Target our standalone global server handler function
+    threading.Thread(target=start_server, args=(node,), daemon=True).start()
     
     try:
         rclpy.spin(node)
