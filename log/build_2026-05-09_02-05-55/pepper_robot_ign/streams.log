@@ -1,0 +1,52 @@
+[0.006s] Invoking command in '/home/hayden/ros_ws/build/pepper_robot_ign': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake /home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_ign -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/hayden/ros_ws/install/pepper_robot_ign
+[0.043s] -- The C compiler identification is GNU 11.4.0
+[0.083s] -- The CXX compiler identification is GNU 11.4.0
+[0.088s] -- Detecting C compiler ABI info
+[0.133s] -- Detecting C compiler ABI info - done
+[0.138s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.138s] -- Detecting C compile features
+[0.138s] -- Detecting C compile features - done
+[0.140s] -- Detecting CXX compiler ABI info
+[0.196s] -- Detecting CXX compiler ABI info - done
+[0.200s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.201s] -- Detecting CXX compile features
+[0.201s] -- Detecting CXX compile features - done
+[0.203s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.301s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.341s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.378s] -- Found pepper_robot_description: 1.0.0 (/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description/cmake)
+[0.378s] -- Found pepper_robot_moveit_config: 1.0.0 (/home/hayden/ros_ws/install/pepper_robot_moveit_config/share/pepper_robot_moveit_config/cmake)
+[0.420s] -- Configuring done
+[0.423s] -- Generating done
+[0.424s] -- Build files have been written to: /home/hayden/ros_ws/build/pepper_robot_ign
+[0.428s] Invoked command in '/home/hayden/ros_ws/build/pepper_robot_ign' returned '0': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake /home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_ign -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/hayden/ros_ws/install/pepper_robot_ign
+[0.429s] Invoking command in '/home/hayden/ros_ws/build/pepper_robot_ign': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake --build /home/hayden/ros_ws/build/pepper_robot_ign -- -j12 -l12
+[0.456s] Invoked command in '/home/hayden/ros_ws/build/pepper_robot_ign' returned '0': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake --build /home/hayden/ros_ws/build/pepper_robot_ign -- -j12 -l12
+[0.457s] Invoking command in '/home/hayden/ros_ws/build/pepper_robot_ign': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake --install /home/hayden/ros_ws/build/pepper_robot_ign
+[0.462s] -- Install configuration: ""
+[0.463s] -- Execute custom install script
+[0.463s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/bridge.launch.py
+[0.470s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/examples/default.launch.py
+[0.477s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/examples/ex_py_follow_target.launch.py
+[0.483s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/examples/robots/pepper_robot.launch.py
+[0.489s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/examples/worlds/world_default.launch.py
+[0.495s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/launch/examples/worlds/world_follow_target.launch.py
+[0.501s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/rviz/ign_moveit2.rviz
+[0.508s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/worlds/follow_target.sdf
+[0.514s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/lib/pepper_robot_ign/ex_follow_target.py
+[0.520s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/ament_index/resource_index/package_run_dependencies/pepper_robot_ign
+[0.526s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/ament_index/resource_index/parent_prefix_path/pepper_robot_ign
+[0.533s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/environment/ament_prefix_path.sh
+[0.539s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/environment/ament_prefix_path.dsv
+[0.545s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/environment/path.sh
+[0.551s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/environment/path.dsv
+[0.556s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/local_setup.bash
+[0.563s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/local_setup.sh
+[0.569s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/local_setup.zsh
+[0.576s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/local_setup.dsv
+[0.582s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/package.dsv
+[0.588s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/ament_index/resource_index/packages/pepper_robot_ign
+[0.594s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/cmake/pepper_robot_ignConfig.cmake
+[0.600s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/cmake/pepper_robot_ignConfig-version.cmake
+[0.606s] -- Symlinking: /home/hayden/ros_ws/install/pepper_robot_ign/share/pepper_robot_ign/package.xml
+[0.614s] Invoked command in '/home/hayden/ros_ws/build/pepper_robot_ign' returned '0': AMENT_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/hayden/ros_ws/install/pepper_robot_moveit_config:/home/hayden/ros_ws/install/pepper_robot_description:/home/hayden/ros_ws/install/pymoveit2:/home/hayden/ros_ws/install/pepper_robot_ign:/home/hayden/ros_ws/install/pepper_robot:/opt/ros/humble IGN_GAZEBO_RESOURCE_PATH=/home/hayden/ros_ws/install/pepper_robot_description/share/pepper_robot_description /usr/bin/cmake --install /home/hayden/ros_ws/build/pepper_robot_ign
