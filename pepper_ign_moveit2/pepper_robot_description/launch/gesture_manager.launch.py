@@ -5,6 +5,7 @@ from rclpy.node import Node
 from rclpy.action import ActionClient
 from std_msgs.msg import String
 from control_msgs.action import FollowJointTrajectory
+import time
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
@@ -33,33 +34,62 @@ class GestureManager(Node):
         self.state_file = "/home/hayden/ros_ws/src/pepper_ign_moveit2/pepper_robot_description/launch/previous_gesture.txt"
 
         
-        self.command_sub = self.create_subscription(
-            String, '/pepper/gesture_command', self.command_callback, 10)
+        
+        # Initialize a state variable to track the active gesture
+        self.current_cmd = "default"
+        
+        # Create a ROS 2 timer that checks the state every 4.5 seconds
+        self.gesture_timer = self.create_timer(4.5, self.gesture_loop_callback)
+        
+        self.subscription = self.create_subscription(
+            String,
+            '/pepper/gesture_command',
+            self.command_callback,
+            10)
+        
+        self.get_logger().info("Gesture Controller Node is ready.")
 
+
+    
 
     def command_callback(self, msg):
-        cmd = msg.data.lower()
-        self.get_logger().info(cmd)
+        # Update our tracking variable instantly when a new message hits the topic
+        new_cmd = msg.data.lower().strip()
+        self.get_logger().info(f"Received new command string: {new_cmd}")
         
+        # If the command changed, update it. This unblocks or switches loops cleanly.
+        if new_cmd != self.current_cmd:
+            self.current_cmd = new_cmd
+            
+            # Optional: If a user switches to a one-shot gesture (like nod or wave),
+            # you can trigger it immediately here so they don't have to wait for the timer.
+            if self.current_cmd in ["nod", "wave_hello", "listen", "default"]:
+                self.execute_single_gesture(self.current_cmd)
+
+    def gesture_loop_callback(self):
+        # This function loops safely in the background every 4.5 seconds
+        # without blocking incoming ROS 2 subscription channels.
+        
+        if self.current_cmd == "explain":
+            self.get_logger().info("Looping explain gesture...")
+            explain_gesture.execute(self)
+            
+        # You can add other looping gestures here in the future if needed:
+        # elif self.current_cmd == "dance":
+        #     dance_gesture.execute(self)
+
+    def execute_single_gesture(self, cmd):
+        # Helper function to process your standard, non-looping configurations
         if cmd == "nod":
-            # Hand off the work to the external script
             nodding_gesture.execute(self)
         elif cmd == "listen":
-            # Hand off the work to the external script
             listening_gesture.execute(self)
-            print(listening_gesture.execute(self))
         elif cmd == "wave_hello":
-            # Hand off the work to the external script
-            wave_hello.execute(self)
-        elif cmd == "explain":
-            # Hand off the work to the external script
-            explain_gesture.execute(self)
+            wave_hello_gesture.execute(self)
         elif cmd == "default":
             default_pose.execute(self)
-
-            
         else:
-            self.get_logger().info(f"Unknown command: {cmd}")
+            self.get_logger().info(f"Unknown command state: {cmd}")
     
 
 
